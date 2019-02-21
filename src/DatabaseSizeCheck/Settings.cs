@@ -33,6 +33,12 @@ namespace DatabaseSizeCheck
 
         public List<Connection> Databases { get; set; }
 
+        public int WindowLeft { get; set; }
+        public int WindowTop { get; set; }
+        public int WindowWidth { get; set; }
+        public int WindowHeight { get; set; }
+        public int WindowState { get; set; }
+
         private Encrypter encrypter;
 
         public Settings()
@@ -45,6 +51,11 @@ namespace DatabaseSizeCheck
                 Salt = SavePasswordEncryptionSalt,
                 HashAlgorithm = Encrypter.HashAlgorithms.SHA1,
             };
+            WindowLeft = 100;
+            WindowTop = 100;
+            WindowWidth = 1080;
+            WindowHeight = 500;
+            WindowState = 0;
             Load();
         }
 
@@ -69,6 +80,11 @@ namespace DatabaseSizeCheck
                     };
                     Databases.Add(c);
                 }
+                else if (line.StartsWith("windowleft=")) WindowLeft = int.Parse(line.Substring(line.IndexOf("=") + 1));
+                else if (line.StartsWith("windowtop=")) WindowTop = int.Parse(line.Substring(line.IndexOf("=") + 1));
+                else if (line.StartsWith("windowwidth=")) WindowWidth = int.Parse(line.Substring(line.IndexOf("=") + 1));
+                else if (line.StartsWith("windowheight=")) WindowHeight = int.Parse(line.Substring(line.IndexOf("=") + 1));
+                else if (line.StartsWith("windowstate=")) WindowState = int.Parse(line.Substring(line.IndexOf("=") + 1));
             }
         }
 
@@ -81,6 +97,11 @@ namespace DatabaseSizeCheck
                     "db={0}|{1}|{2}|{3}|{4}",
                     db.Host, db.Database, encrypter.EncryptString(db.Username), encrypter.EncryptString(db.Password), db.IntegratedSecurity ? "y" : "n"));
             }
+            s.AppendLine(string.Format("windowleft={0}", WindowLeft));
+            s.AppendLine(string.Format("windowtop={0}", WindowTop));
+            s.AppendLine(string.Format("windowwidth={0}", WindowWidth));
+            s.AppendLine(string.Format("windowheight={0}", WindowHeight));
+            s.AppendLine(string.Format("windowstate={0}", WindowState));
             File.WriteAllText(Filename, s.ToString());
         }
 

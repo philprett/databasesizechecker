@@ -104,6 +104,7 @@ namespace DatabaseSizeCheck
         {
             FormDatabases f = new FormDatabases();
             f.ShowDialog();
+            settings = new Settings();
             RefreshForm();
         }
 
@@ -116,6 +117,25 @@ namespace DatabaseSizeCheck
         {
             FormAbout f = new FormAbout();
             f.ShowDialog();
+        }
+
+        public void UpdateSettingsWithWindowDetails()
+        {
+            settings.WindowLeft = Left;
+            settings.WindowTop = Top;
+            settings.WindowWidth = Width;
+            settings.WindowHeight = Height;
+            settings.WindowState = WindowState == FormWindowState.Minimized ? 1 : WindowState == FormWindowState.Maximized ? 2 : 0;
+            settings.Save();
+        }
+
+        public void ApplySettingsWindowsDetails()
+        {
+            Left = settings.WindowLeft;
+            Top = settings.WindowTop;
+            Width = settings.WindowWidth;
+            Height = settings.WindowHeight;
+            WindowState = settings.WindowState == 1 ? FormWindowState.Minimized : settings.WindowState == 2 ? FormWindowState.Maximized : FormWindowState.Normal;
         }
     }
 }

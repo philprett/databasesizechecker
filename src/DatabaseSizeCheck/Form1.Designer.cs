@@ -35,6 +35,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.databasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Grid = new System.Windows.Forms.DataGridView();
             this.colServer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDatabase = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,12 +53,6 @@
             this.colTLogMaxSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.databasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -70,6 +70,55 @@
             this.menuStrip1.Size = new System.Drawing.Size(1063, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Image = global::DatabaseSizeCheck.Properties.Resources.door_in;
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.exitToolStripMenuItem.Text = "E&xit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // updateToolStripMenuItem
+            // 
+            this.updateToolStripMenuItem.Image = global::DatabaseSizeCheck.Properties.Resources.arrow_refresh;
+            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
+            this.updateToolStripMenuItem.Text = "&Update";
+            this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
+            // 
+            // databasesToolStripMenuItem
+            // 
+            this.databasesToolStripMenuItem.Image = global::DatabaseSizeCheck.Properties.Resources.database_edit;
+            this.databasesToolStripMenuItem.Name = "databasesToolStripMenuItem";
+            this.databasesToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
+            this.databasesToolStripMenuItem.Text = "&Databases";
+            this.databasesToolStripMenuItem.Click += new System.EventHandler(this.databasesToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.helpToolStripMenuItem1,
+            this.creditsToolStripMenuItem});
+            this.helpToolStripMenuItem.Image = global::DatabaseSizeCheck.Properties.Resources.help;
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.helpToolStripMenuItem.Text = "&Help";
+            // 
+            // helpToolStripMenuItem1
+            // 
+            this.helpToolStripMenuItem1.Image = global::DatabaseSizeCheck.Properties.Resources.help;
+            this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
+            this.helpToolStripMenuItem1.Text = "&Help";
+            this.helpToolStripMenuItem1.Click += new System.EventHandler(this.helpToolStripMenuItem1_Click);
+            // 
+            // creditsToolStripMenuItem
+            // 
+            this.creditsToolStripMenuItem.Name = "creditsToolStripMenuItem";
+            this.creditsToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.creditsToolStripMenuItem.Text = "&About";
+            this.creditsToolStripMenuItem.Click += new System.EventHandler(this.creditsToolStripMenuItem_Click);
             // 
             // Grid
             // 
@@ -97,7 +146,7 @@
             this.Grid.ReadOnly = true;
             this.Grid.RowHeadersVisible = false;
             this.Grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.Grid.Size = new System.Drawing.Size(1063, 300);
+            this.Grid.Size = new System.Drawing.Size(1063, 392);
             this.Grid.TabIndex = 1;
             // 
             // colServer
@@ -183,7 +232,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 330);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 422);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1063, 22);
             this.statusStrip1.TabIndex = 2;
@@ -194,60 +243,11 @@
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Image = global::DatabaseSizeCheck.Properties.Resources.door_in;
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-            this.exitToolStripMenuItem.Text = "E&xit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // updateToolStripMenuItem
-            // 
-            this.updateToolStripMenuItem.Image = global::DatabaseSizeCheck.Properties.Resources.arrow_refresh;
-            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
-            this.updateToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
-            this.updateToolStripMenuItem.Text = "&Update";
-            this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
-            // 
-            // databasesToolStripMenuItem
-            // 
-            this.databasesToolStripMenuItem.Image = global::DatabaseSizeCheck.Properties.Resources.database_edit;
-            this.databasesToolStripMenuItem.Name = "databasesToolStripMenuItem";
-            this.databasesToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
-            this.databasesToolStripMenuItem.Text = "&Databases";
-            this.databasesToolStripMenuItem.Click += new System.EventHandler(this.databasesToolStripMenuItem_Click);
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.helpToolStripMenuItem1,
-            this.creditsToolStripMenuItem});
-            this.helpToolStripMenuItem.Image = global::DatabaseSizeCheck.Properties.Resources.help;
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
-            this.helpToolStripMenuItem.Text = "&Help";
-            // 
-            // helpToolStripMenuItem1
-            // 
-            this.helpToolStripMenuItem1.Image = global::DatabaseSizeCheck.Properties.Resources.help;
-            this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
-            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.helpToolStripMenuItem1.Text = "&Help";
-            this.helpToolStripMenuItem1.Click += new System.EventHandler(this.helpToolStripMenuItem1_Click);
-            // 
-            // creditsToolStripMenuItem
-            // 
-            this.creditsToolStripMenuItem.Name = "creditsToolStripMenuItem";
-            this.creditsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.creditsToolStripMenuItem.Text = "&About";
-            this.creditsToolStripMenuItem.Click += new System.EventHandler(this.creditsToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1063, 352);
+            this.ClientSize = new System.Drawing.Size(1063, 444);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.Grid);
             this.Controls.Add(this.menuStrip1);
@@ -257,6 +257,8 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Database Size Checker";
+            this.Activated += new System.EventHandler(this.Form1_Activated);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

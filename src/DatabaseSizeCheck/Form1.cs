@@ -12,14 +12,23 @@ namespace DatabaseSizeCheck
 {
     public partial class Form1 : Form
     {
+        public bool FormActivated { get; set; }
         public Form1()
         {
+            FormActivated = false;
             InitializeComponent();
             InitController();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+        }
+
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            if (FormActivated) return;
+            ApplySettingsWindowsDetails();
+            FormActivated = true;
             RefreshForm();
         }
 
@@ -46,6 +55,11 @@ namespace DatabaseSizeCheck
         private void helpToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             ShowHelp();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            UpdateSettingsWithWindowDetails();
         }
     }
 }
