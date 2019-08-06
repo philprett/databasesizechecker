@@ -68,12 +68,12 @@ namespace DatabaseSizeCheck
                 row.Cells.Add(cell);
 
                 cell = new DataGridViewTextBoxCell();
-                cell.Value = stats.DataSize == -1 ? "Unlimited" : stats.DataSize.ToString("#,###,###,###,##0");
+                cell.Value = stats.DataSize.ToString("#,###,###,###,##0");
                 row.Cells.Add(cell);
 
                 cell = new DataGridViewTextBoxCell();
                 cell.Value = stats.DataMaxSize;
-                cell.Value = stats.DataMaxSize == -1 ? "Unlimited" : stats.DataMaxSize.ToString("#,###,###,###,##0");
+                cell.Value = stats.DataMaxSize == -1 ? stats.DataDriveSize.ToString("#,###,###,###,##0") : stats.DataMaxSize.ToString("#,###,###,###,##0");
                 row.Cells.Add(cell);
 
                 cell = new DataGridViewTextBoxCell();
@@ -82,17 +82,17 @@ namespace DatabaseSizeCheck
 
                 cell = new DataGridViewTextBoxCell();
                 cell.Value = stats.TLogUsed;
-                cell.Value = stats.TLogUsed == -1 ? "Unlimited" : stats.TLogUsed.ToString("#,###,###,###,##0");
+                cell.Value = stats.TLogUsed.ToString("#,###,###,###,##0");
                 row.Cells.Add(cell);
 
                 cell = new DataGridViewTextBoxCell();
                 cell.Value = stats.TLogSize;
-                cell.Value = stats.TLogSize == -1 ? "Unlimited" : stats.TLogSize.ToString("#,###,###,###,##0");
+                cell.Value = stats.TLogSize.ToString("#,###,###,###,##0");
                 row.Cells.Add(cell);
 
                 cell = new DataGridViewTextBoxCell();
                 cell.Value = stats.TLogMaxSize;
-                cell.Value = stats.TLogMaxSize == -1 ? "Unlimited" : stats.TLogMaxSize.ToString("#,###,###,###,##0");
+                cell.Value = stats.TLogMaxSize == -1 ? stats.TLogDriveSize.ToString("#,###,###,###,##0") : stats.TLogMaxSize.ToString("#,###,###,###,##0");
                 row.Cells.Add(cell);
 
                 Grid.Rows.Add(row);

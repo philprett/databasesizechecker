@@ -145,6 +145,17 @@ namespace DatabaseSizeCheck
 
                 const string GetTransactionLogUsageSQL = "DBCC SQLPERF (LOGSPACE)";
 
+                const string GetDriveSizesSQL =
+                    "SELECT      DISTINCT(volume_mount_point) AS Drive, " +
+                    "            total_bytes / 1024 AS SizeKB, " +
+                    "            available_bytes / 1024 AS FreeKB " +
+                    "FROM        sys.master_files AS f " +
+                    "CROSS APPLY sys.dm_os_volume_stats(f.database_id, f.file_id) " +
+                    "GROUP BY    volume_mount_point, " +
+                    "            total_bytes/1024, " +
+                    "            available_bytes/1024 " +
+                    "ORDER BY    1";
+
                 Statistics ret = new Statistics
                 {
                     Host = Host,
@@ -186,9 +197,31 @@ namespace DatabaseSizeCheck
                     }
                 }
                 catch { }
+
+                try
+                {
+                    DataTable drives = ExecuteQuery(GetDriveSizesSQL);
+                    foreach (DataRow r in drives.Rows)
+                    {
+                        string drive = (string)r["Drive"];
+                        long driveSize = (long)r["SizeKB"];
+                        long driveFree = (long)r["FreeKB"];
+
+                        if (ret.DataFilename.StartsWith(drive, StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            ret.DataDriveSize = driveSize;
+                            ret.DataDriveUsed = driveSize - driveFree;
+                        }
+                        else if (ret.TLogFilename.StartsWith(drive, StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            ret.TLogDriveSize = driveSize;
+                            ret.TLogDriveUsed = driveSize - driveFree;
+                        }
+                    }
+                }
+                catch (Exception ex) { }
                 return ret;
             }
         }
-
     }
 }
